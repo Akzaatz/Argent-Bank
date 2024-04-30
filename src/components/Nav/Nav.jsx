@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Nav = () => {
   return (
     <nav className="main-nav">
-      <NavLink className="main-nav-logo" to="/index">
+      <NavLink className="main-nav-logo" to="/">
         <img src={logo} alt="logo de la banque en ligne ArgentBank" />
         <h1 className="sr-only">Argent Bank</h1>
       </NavLink>
