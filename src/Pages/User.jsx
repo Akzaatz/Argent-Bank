@@ -1,15 +1,28 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectUser } from "../redux/userSlice";
 
 const User = () => {
+  const user = useSelector(selectUser);
+  const dispach = useDispatch();
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispach(logout());
+  };
   return (
     <main className="main bg-dark">
       <div className="header">
         <h1>
           Welcome back
           <br />
-          Tony Jarvis!
+          {user.name}
         </h1>
         <button className="edit-button">Edit Name</button>
+        <div>
+          <button className="edit-button" onClick={(e) => handleLogout(e)}>
+            LogOut
+          </button>
+        </div>
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

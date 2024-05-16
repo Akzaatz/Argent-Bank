@@ -1,5 +1,5 @@
 import React from "react";
-import FeaturesJson from "../../assets/data/data.json";
+import FeaturesJson from "../../assets/data/features.json";
 
 const Features = () => {
   return (
@@ -10,7 +10,7 @@ const Features = () => {
           <div className="feature-item" key={index}>
             <img src={feature.img} alt={feature.alt} className="feature-icon" />
             <h3 className="feature-item-title">{feature.title}</h3>
-            <p>{feature.descrition}</p>
+            <p>{feature.description}</p>
           </div>
         ))}
       </section>
