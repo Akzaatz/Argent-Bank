@@ -1,29 +1,36 @@
+import axios from "axios";
 export const loginUser = async (name, password) => {
   try {
-    const response = await fetch("http://localhost:3001/api/v1/user/signup", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
+    const response = await axios.post(
+      "http://localhost:3001/api/v1/user/login",
+      {
+        email: name,
         password,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Invalid credentials");
-    }
-
-    const data = await response.json();
-    if (!data) {
-      throw new Error("Empty response");
-    }
-
-    return data;
+      }
+    );
+    // console.log(response);
+    const token = response.data.body.token;
+    localStorage.setItem("token", token);
+    const defaultOptions = {
+      headers: {
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+    };
+    const response2 = await axios.post(
+      "http://localhost:3001/api/v1/user/profile",
+      {},
+      defaultOptions
+    );
+    console.log(response2);
+    const user = response2.data.body;
+    return user;
   } catch (error) {
-    console.error("Login error:", error);
-    throw error;
+    // Amélioration des messages d'erreur
+    if (error.response && error.response.data && error.response.data.message) {
+      username.style.border = "2px solid #FF0000";
+      throw new Error("Login failed. Please try again.");
+    } else {
+      throw new Error(error.response.data.message);
+    }
   }
 };

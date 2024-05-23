@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginAsync,
@@ -9,10 +9,19 @@ import {
 const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
   const dispatch = useDispatch();
   const status = useSelector(selectUserStatus);
   const error = useSelector(selectUserError);
+
+  useEffect(() => {
+    if (status !== "loading" && error) {
+      // Nettoyage de l'erreur après un délai
+      const timer = setTimeout(() => {
+        dispatch(clearError());
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [status, error, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

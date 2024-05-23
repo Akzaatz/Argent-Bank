@@ -1,0 +1,27 @@
+.edit-card {
+    display: inline-block;
+
+    background: white;
+    color: black;
+    width: 280px;
+    border-radius: 10px;
+
+
+    .edit-card-content {
+        display: flex;
+        flex-direction: column;
+
+
+
+        input {
+            margin-top: 20px;
+            max-width: 120px;
+        }
+
+        button {
+            margin: 20px 10px 40px;
+            min-width: 80px;
+        }
+
+    }
+}
