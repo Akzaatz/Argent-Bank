@@ -1,6 +1,6 @@
 import React from "react";
 
-const EditName = () => {
+const EditName = ({ onCancel }) => {
   return (
     <section className="edit-card">
       <div className="edit-card-content">
@@ -8,18 +8,20 @@ const EditName = () => {
         <div className="input-pseudo">
           <label htmlFor="username">User name: </label>
           <input type="text" name="username" />
-        </div>{" "}
+        </div>
         <div className="input-firstname">
           <label htmlFor="firstname">First name: </label>
           <input type="text" name="firstname" />
         </div>
         <div className="input-lastname">
           <label htmlFor="lastname">Last name: </label>
-          <input type="text" name="lasname" />
+          <input type="text" name="lastname" />
         </div>
         <div>
           <button className="edit-button">Save</button>
-          <button className="edit-button">Cancel</button>
+          <button className="edit-button" onClick={onCancel}>
+            Cancel
+          </button>
         </div>
       </div>
     </section>

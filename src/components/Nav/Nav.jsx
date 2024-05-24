@@ -25,7 +25,7 @@ const Nav = () => {
           <NavLink className="main-nav-item" to="/" onClick={handleLogout}>
             <i className="fa fa-user-circle"></i>
             {user && user.userName}
-            <i class="fa fa-sign-out"></i>
+            <i className="fa fa-sign-out"></i>
             Sign Out
           </NavLink>
         ) : (
