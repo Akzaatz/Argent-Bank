@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginAsync,
+  setRememberMe,
   selectUserStatus,
   selectUserError,
 } from "../../redux/userSlice";
@@ -9,19 +10,26 @@ import {
 const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
   const dispatch = useDispatch();
   const status = useSelector(selectUserStatus);
   const error = useSelector(selectUserError);
 
   useEffect(() => {
     if (status !== "loading" && error) {
-      // Nettoyage de l'erreur après un délai
       const timer = setTimeout(() => {
-        dispatch(clearError());
+        // dispatch(clearError()); // Assurez-vous d'ajouter une action clearError dans userSlice si nécessaire
       }, 3000);
       return () => clearTimeout(timer);
     }
   }, [status, error, dispatch]);
+
+  const handleRememberMeChange = (e) => {
+    const value = e.target.checked;
+    setRemember(value);
+    localStorage.setItem("rememberMe", JSON.stringify(value));
+    dispatch(setRememberMe(value));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +60,12 @@ const Login = () => {
               />
             </div>
             <div className="input-remember">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked={remember}
+                onChange={handleRememberMeChange}
+              />
               <label htmlFor="remember-me">Remember me</label>
             </div>
             <button

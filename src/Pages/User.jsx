@@ -6,7 +6,6 @@ import EditName from "../components/EditName/EditName";
 const User = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
   const [isEditing, setIsEditing] = useState(false);
 
   const handleLogout = (e) => {

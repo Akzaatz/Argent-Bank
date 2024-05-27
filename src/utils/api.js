@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const loginUser = async (name, password) => {
   try {
     const response = await axios.post(
@@ -8,9 +9,9 @@ export const loginUser = async (name, password) => {
         password,
       }
     );
-    // console.log(response);
     const token = response.data.body.token;
     localStorage.setItem("token", token);
+
     const defaultOptions = {
       headers: {
         Authorization: token ? `Bearer ${token}` : "",
@@ -21,11 +22,9 @@ export const loginUser = async (name, password) => {
       {},
       defaultOptions
     );
-    console.log(response2);
     const user = response2.data.body;
     return user;
   } catch (error) {
-    // Amélioration des messages d'erreur
     if (error.response && error.response.data && error.response.data.message) {
       username.style.border = "2px solid #FF0000";
       throw new Error("Login failed. Please try again.");

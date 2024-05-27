@@ -1,16 +1,15 @@
 import React from "react";
 import logo from "../../assets/img/argentBankLogo.png";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { selectLogged, logout, selectUser } from "../../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLogged, selectUser, logout } from "../../redux/userSlice";
 
 const Nav = () => {
+  const dispatch = useDispatch();
   const logged = useSelector(selectLogged);
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
 
-  const handleLogout = (e) => {
-    e.preventDefault();
+  const handleLogout = () => {
     dispatch(logout());
   };
 
