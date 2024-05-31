@@ -21,12 +21,16 @@ const Nav = () => {
       </NavLink>
       <div>
         {logged ? (
-          <NavLink className="main-nav-item" to="/" onClick={handleLogout}>
-            <i className="fa fa-user-circle"></i>
-            {user && user.userName}
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </NavLink>
+          <div>
+            <NavLink className="main-nav-item" to="/user">
+              <i className="fa fa-user-circle"></i>
+              {user && user.userName}
+            </NavLink>
+            <NavLink className="main-nav-item" to="/" onClick={handleLogout}>
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </NavLink>
+          </div>
         ) : (
           <NavLink className="main-nav-item" to="/signin">
             <i className="fa fa-user-circle"></i>

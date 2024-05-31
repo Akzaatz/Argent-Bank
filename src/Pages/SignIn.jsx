@@ -6,7 +6,12 @@ import User from "./User";
 
 const SignIn = () => {
   const logged = useSelector(selectLogged);
-  return <div>{logged ? <User /> : <Login />}</div>;
+  return (
+    <div className="main">
+      {" "}
+      <div>{logged ? <User /> : <Login />}</div>
+    </div>
+  );
 };
 
 export default SignIn;

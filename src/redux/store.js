@@ -1,3 +1,4 @@
+// store.js
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import {
@@ -12,7 +13,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-const rememberMe = JSON.parse(localStorage.getItem("rememberMe"));
+const rememberMe = JSON.parse(localStorage.getItem("rememberMe") || "false");
 
 const persistConfig = {
   key: "root",
