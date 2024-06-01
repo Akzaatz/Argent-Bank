@@ -24,6 +24,10 @@ const User = () => {
     setIsEditing(false);
   };
 
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
   return (
     <main className="main bg-dark">
       <div className="user-page">
@@ -38,7 +42,7 @@ const User = () => {
               Edit Name
             </button>
           ) : (
-            <EditName onCancel={handleCancelClick} />
+            <EditName onSave={handleSave} onCancel={handleCancelClick} />
           )}
         </div>
         <h2 className="sr-only">Accounts</h2>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateUserNameThunk,
   selectUser,
-  selectToken,
+  // selectToken,
 } from "../../redux/userSlice";
 
 const EditName = ({ onSave, onCancel }) => {
