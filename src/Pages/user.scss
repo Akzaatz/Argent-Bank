@@ -1,16 +1,9 @@
 .main {
-
-
-
     background: #12002b;
     display: flex;
     flex-direction: column;
 
     .user-page {
-        // flex: 1;
-        // display: flex;
-        // flex-direction: column;
-
         .header {
             color: #fff;
             margin-bottom: 2rem;
@@ -61,8 +54,6 @@
             flex: 1;
         }
 
-
-
         .transaction-button {
             display: block;
             width: 100%;
@@ -88,6 +79,5 @@
                 width: 200px;
             }
         }
-
     }
 }

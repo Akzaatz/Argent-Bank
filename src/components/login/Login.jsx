@@ -1,4 +1,3 @@
-// Login.jsx
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,7 +20,6 @@ const Login = () => {
     e.preventDefault();
     const resultAction = await dispatch(loginThunk({ email, password }));
     if (loginThunk.fulfilled.match(resultAction)) {
-      console.log(resultAction);
       const token = resultAction.payload.body.token;
       localStorage.setItem("token", token);
       dispatch(getUserInfoThunk(token));

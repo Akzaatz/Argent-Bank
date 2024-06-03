@@ -1,20 +1,15 @@
-// userSlice.js
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginUser, getUserInfo, updateUserNameAPI } from "../utils/api";
 
-// Thunks
 export const loginThunk = createAsyncThunk(
   "user/loginThunk",
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await loginUser(email, password);
-      console.log("loginThunk response:", response);
       if (response.status === "failed") {
         return thunkAPI.rejectWithValue(response.error);
       }
       localStorage.setItem("token", response.body.token);
-      console.log("loginthunk", response);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -27,7 +22,6 @@ export const getUserInfoThunk = createAsyncThunk(
   async (token, thunkAPI) => {
     try {
       const response = await getUserInfo(token);
-      console.log("getUserInfoThunk response:", response);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -40,7 +34,6 @@ export const updateUserNameThunk = createAsyncThunk(
   async ({ token, newUserName }, thunkAPI) => {
     try {
       const response = await updateUserNameAPI(token, newUserName);
-      console.log("updateUserNameThunk response:", response);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -76,7 +69,7 @@ const userSlice = createSlice({
     builder
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.token = action.payload.token;
+        state.token = action.payload.body.token;
         state.logged = true;
       })
       .addCase(loginThunk.rejected, (state, action) => {
@@ -84,8 +77,8 @@ const userSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(getUserInfoThunk.fulfilled, (state, action) => {
-        state.status = "succeded";
-        state.user = action.payload.body; // Notez ici que nous accédons au corps de la réponse
+        state.status = "succeeded";
+        state.user = action.payload.body;
         if (state.rememberMe) {
           localStorage.setItem("user", JSON.stringify(state.user));
         }
@@ -97,7 +90,7 @@ const userSlice = createSlice({
       .addCase(updateUserNameThunk.fulfilled, (state, action) => {
         state.status = "succeeded";
         if (state.user) {
-          state.user.userName = action.payload.body.userName; // Assurez-vous que la structure de réponse correspond
+          state.user.userName = action.payload.body.userName;
           if (state.rememberMe) {
             localStorage.setItem("user", JSON.stringify(state.user));
           }

@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* Ajouté pour gérer les petits écrans */
 
     @media (min-width: 920px) {
         .features {
@@ -28,6 +27,4 @@
         font-weight: bold;
         margin-bottom: 0.5rem;
     }
-
-
 }

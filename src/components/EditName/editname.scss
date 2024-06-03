@@ -6,12 +6,9 @@
     width: 280px;
     border-radius: 10px;
 
-
     .edit-card-content {
         display: flex;
         flex-direction: column;
-
-
 
         input {
             margin-top: 20px;
@@ -22,6 +19,5 @@
             margin: 20px 10px 40px;
             min-width: 80px;
         }
-
     }
 }

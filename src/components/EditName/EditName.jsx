@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateUserNameThunk,
-  selectUser,
-  // selectToken,
-} from "../../redux/userSlice";
+import { updateUserNameThunk, selectUser } from "../../redux/userSlice";
 
 const EditName = ({ onSave, onCancel }) => {
   const dispatch = useDispatch();
@@ -16,7 +12,7 @@ const EditName = ({ onSave, onCancel }) => {
     e.preventDefault();
     try {
       await dispatch(updateUserNameThunk({ token, newUserName })).unwrap();
-      console.log("Le nom d'utilisateur a bien été modifié.");
+
       onSave();
     } catch (error) {
       console.error("La mise à jour du nom d'utilisateur a échoué:", error);
