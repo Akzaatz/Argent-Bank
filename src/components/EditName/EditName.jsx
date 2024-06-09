@@ -30,7 +30,7 @@ const EditName = ({ onSave, onCancel }) => {
               type="text"
               id="userName"
               value={newUserName}
-              placeholder={user ? user.userName : ""}
+              // placeholder={user ? user.userName : ""}
               onChange={(e) => setNewUserName(e.target.value)}
             />
           </div>
